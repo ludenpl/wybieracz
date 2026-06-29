@@ -6,7 +6,9 @@
   "scripts": {
     "test": "node test/recommender.test.mjs",
     "start": "python3 -m http.server 8000",
-    "e2e": "node test/e2e.smoke.mjs"
+    "build": "node scripts/build-standalone.mjs && node scripts/gen-answer-key.mjs",
+    "e2e": "node test/e2e.smoke.mjs",
+    "e2e:standalone": "node test/e2e.standalone.mjs"
   },
   "keywords": ["bmw", "quiz", "recommender", "wybieracz"],
   "license": "MIT",

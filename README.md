@@ -14,19 +14,36 @@ Repozytorium zawiera czysty, niezależny od frameworka silnik (`src/`), kompletn
 
 ---
 
-## Szybki start
+## Najprościej: jeden plik, bez instalacji (laptop bez gita/Node)
+
+Jeśli nie masz gita, Node ani możliwości uruchomienia serwera (typowy laptop
+służbowy), użyj wersji **samowystarczalnej** — wszystko w jednym pliku HTML:
+
+1. Pobierz [`wybieracz-standalone.html`](wybieracz-standalone.html) na dysk
+   (w GitHub: otwórz plik → przycisk **Download raw file** / ikona pobierania).
+2. **Kliknij plik dwukrotnie.** Otworzy się w przeglądarce i od razu działa.
+
+Nie wymaga internetu, gita, Node ani serwera HTTP — wszystkie pytania, katalog
+modeli i silnik są wklejone do tego jednego pliku. Plik powstaje z tych samych
+źródeł co reszta (`npm run build`), więc nie rozjeżdża się z silnikiem.
+
+## Szybki start (dla developera)
 
 ```bash
 # 1) Testy jednostkowe silnika (Node 18+, bez zależności)
 npm test
 
-# 2) Demo w przeglądarce — wymaga serwowania (moduły ES)
+# 2) Demo modułowe w przeglądarce — wymaga serwowania (moduły ES)
 npm start          # uruchamia http://localhost:8000
 #   ...następnie otwórz http://localhost:8000/index.html
+
+# 3) Przebuduj wersję samodzielną + klucz odpowiedzi po zmianach w src/
+npm run build      # -> wybieracz-standalone.html + data/answer-key.md
 ```
 
-> Demo używa modułów ES (`import`), więc nie zadziała po otwarciu pliku przez
-> `file://` — trzeba je serwować (`npm start`, `npx serve`, dowolny serwer HTTP).
+> Demo modułowe (`index.html`) używa `import`, więc nie zadziała przez `file://`
+> — trzeba je serwować. **Wersja `wybieracz-standalone.html` nie ma tego
+> ograniczenia** i działa po dwukliku.
 
 Opcjonalny test E2E (przechodzi cały test w prawdziwej przeglądarce):
 
@@ -171,12 +188,15 @@ src/
   questions.js     5 pytań + identyfikatory odpowiedzi (źródło prawdy dla UI)
   models.js        katalog 33 modeli BMW = klucz odpowiedzi (edytuje dealer)
   recommender.js   silnik: scoring, twarde wymogi, ranking
-index.html         działające demo (intro → 5 pytań → ładowanie → wynik)
+index.html         działające demo modułowe (intro → 5 pytań → ładowanie → wynik)
+wybieracz-standalone.html  TEN SAM test w jednym pliku — działa po dwukliku (file://)
 data/
   answer-key.md    czytelny klucz odpowiedzi (generowany)
 scripts/
-  gen-answer-key.mjs  generator powyższego
+  gen-answer-key.mjs    generator klucza odpowiedzi
+  build-standalone.mjs  generator wersji samodzielnej (1 plik)
 test/
   recommender.test.mjs  19 testów (m.in. scenariusze X7, Serii 1, M4)
-  e2e.smoke.mjs         test E2E demo (opcjonalny, playwright-core)
+  e2e.smoke.mjs         test E2E demo modułowego (opcjonalny, playwright-core)
+  e2e.standalone.mjs    test E2E wersji samodzielnej z file:// (opcjonalny)
 ```
