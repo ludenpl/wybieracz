@@ -1,0 +1,16 @@
+{
+  "name": "wybieracz",
+  "version": "1.0.0",
+  "description": "Wybieracz BMW — silnik dopasowania modelu na podstawie testu 'Jakie BMW pasuje do Ciebie?'",
+  "type": "module",
+  "scripts": {
+    "test": "node test/recommender.test.mjs",
+    "start": "python3 -m http.server 8000",
+    "e2e": "node test/e2e.smoke.mjs"
+  },
+  "keywords": ["bmw", "quiz", "recommender", "wybieracz"],
+  "license": "MIT",
+  "devDependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}
