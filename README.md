@@ -12,8 +12,19 @@ Repozytorium zawiera czysty, niezależny od frameworka silnik (`src/`), kompletn
 **klucz odpowiedzi** dla aktualnej oferty BMW (33 modele) oraz **działające demo**
 (`index.html`), które przechodzi cały test od początku do końca.
 
-> 🧠 **Chcesz użyć samego algorytmu jako bazy pod własny wybieracz?**
-> Zobacz [`ALGORYTM.md`](ALGORYTM.md) (opis krok po kroku) oraz ogólny,
+> ⭐ **Robisz dokładnie ten sam projekt (wybieracz BMW) i potrzebujesz tylko
+> gotowego algorytmu?** Weź jeden plik: [`bmw-wybieracz.js`](bmw-wybieracz.js) —
+> kompletny algorytm (pytania + katalog 33 modeli z kluczem odpowiedzi + scoring),
+> bez zależności. Import i gotowe:
+>
+> ```js
+> import { recommend, unmetMessage } from './bmw-wybieracz.js';
+> const w = recommend({ usage:'fun', priorities:['performance','design','technology'],
+>                       passengers:'p4', body:'coupe', powertrain:'combustion' });
+> w.best.model.name; w.best.percent; unmetMessage(w.best);
+> ```
+>
+> 🧠 Chcesz zrozumieć/uogólnić algorytm? Zobacz [`ALGORYTM.md`](ALGORYTM.md) i
 > niezależny od marki silnik w [`engine/`](engine/).
 
 ---
@@ -188,6 +199,7 @@ Warte rozważenia dalej:
 ## Struktura repozytorium
 
 ```
+bmw-wybieracz.js   GOTOWY algorytm BMW w jednym pliku (pytania + katalog + scoring)
 ALGORYTM.md        opis algorytmu jako baza pod własny wybieracz (język-agnostyczny)
 engine/
   match-engine.js  OGÓLNY silnik + 5 typów kryteriów (bez wiedzy o BMW)
