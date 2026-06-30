@@ -12,6 +12,10 @@ Repozytorium zawiera czysty, niezależny od frameworka silnik (`src/`), kompletn
 **klucz odpowiedzi** dla aktualnej oferty BMW (33 modele) oraz **działające demo**
 (`index.html`), które przechodzi cały test od początku do końca.
 
+> 🧠 **Chcesz użyć samego algorytmu jako bazy pod własny wybieracz?**
+> Zobacz [`ALGORYTM.md`](ALGORYTM.md) (opis krok po kroku) oraz ogólny,
+> niezależny od marki silnik w [`engine/`](engine/).
+
 ---
 
 ## Najprościej: jeden plik, bez instalacji (laptop bez gita/Node)
@@ -184,6 +188,10 @@ Warte rozważenia dalej:
 ## Struktura repozytorium
 
 ```
+ALGORYTM.md        opis algorytmu jako baza pod własny wybieracz (język-agnostyczny)
+engine/
+  match-engine.js  OGÓLNY silnik + 5 typów kryteriów (bez wiedzy o BMW)
+  bmw.example.js   przykład: wybieracz BMW złożony na ogólnym silniku
 src/
   questions.js     5 pytań + identyfikatory odpowiedzi (źródło prawdy dla UI)
   models.js        katalog 33 modeli BMW = klucz odpowiedzi (edytuje dealer)
@@ -197,6 +205,7 @@ scripts/
   build-standalone.mjs  generator wersji samodzielnej (1 plik)
 test/
   recommender.test.mjs  19 testów (m.in. scenariusze X7, Serii 1, M4)
+  parity.test.mjs       dowód: engine/ == src/ na 4860 kombinacjach
   e2e.smoke.mjs         test E2E demo modułowego (opcjonalny, playwright-core)
   e2e.standalone.mjs    test E2E wersji samodzielnej z file:// (opcjonalny)
 ```

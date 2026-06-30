@@ -4,7 +4,7 @@
   "description": "Wybieracz BMW — silnik dopasowania modelu na podstawie testu 'Jakie BMW pasuje do Ciebie?'",
   "type": "module",
   "scripts": {
-    "test": "node test/recommender.test.mjs",
+    "test": "node test/recommender.test.mjs && node test/parity.test.mjs",
     "start": "python3 -m http.server 8000",
     "build": "node scripts/build-standalone.mjs && node scripts/gen-answer-key.mjs",
     "e2e": "node test/e2e.smoke.mjs",
